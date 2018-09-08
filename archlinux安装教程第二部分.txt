@@ -1,0 +1,125 @@
+﻿Archlinux安装教程第二部分
+这里是第二部分。此部分目的为搭建一个比较完整的系统环境。目前我们大致已经把最困难的部分攻关了，想必你也是。后面的步骤比较繁琐，请不要放弃。
+
+
+1、	连接网络
+输入ping -c4出现这样的提示
+ping：www.baidu.com: Nane or service not known
+则说明你没有连接到网络，那么跟着我们输入后面的命令
+输入ip link查看一下2.后面的xxxx：<xxxxxx>
+然后输入ip link set xxxx up
+以我的电脑举个例子：
+[root@archlinux~]#ip link
+1.lo：xxxx
+2.enp5s0：xxxxx
+3.wlp0s29u1u5：xxxx
+这时我们输入ip link set enp5s0 up并reboot重启
+进入系统后输入（不分顺序，但比较推荐先输入第二个再输入第一个）
+systemctl enable dhcpcd（wifi-menu）
+systemctl start dhcpcd（wifi-menu）
+然后再ping一下检查网络是否联通
+
+
+
+2、安装图形界面
+我们这里推荐安装gnome、dde
+命令：pacman -S gnome
+pacman -S deepin(最好安装这个这样汉化起来不会很麻烦，我们后面的教程会说到的)
+还有一些dde搭配的额外工具不喜欢的可以不安装pacman -S deepin-extra
+其他桌面环境的安装具体可以参考这个
+https://wiki.archlinux.org/index.php/Desktop_environment#List_of_desktop_environments
+
+3、networkmanager的安装和配置
+安装命令：pacman -S networkmanager
+启用networkmanager
+命令：
+systemctl start NetworkManager
+systemctl enable NetworkManager
+(注意大小写)
+为了避免有些桌面环境没有带网络图标我们可以通过下面的命令来安装
+pacman -S network-manager-applet
+
+
+4、lightdm登录界面的安装和配置
+安装：pacman -S lightdm
+配置：nano /etc/lightdm/lightdm.conf
+找到#greeter-session=example-gtk-gnome这一行把#去掉如果喜欢gnome的登录界面就不用做其他修改了（前提是你安装了gnome桌面环境），如果喜欢dde的登陆界面把example-gtk-gnome改为lightdm-deepin-greeter按ctrl+o保存ctrl+x退出。
+设置开机启动：systemctl enable lightdm
+
+
+5、创建用户和制定机器名
+下面的命令有点长请仔细输入避免不必要的麻烦
+创建用户名：
+useradd -m -g users -G wheel -s /bin/bash xxx(这里填入你喜欢的用户名)
+创建密码
+输入：passwd xxx(你喜欢的用户名)
+注意这里一定输入正确的命令不然无法登录系统，如果输入错误并出现无法登录系统的错误后私聊解决。
+
+输入echo xxxx>>/etc/hostname即可（注，xxxx为你喜欢的机器名，自己替换即可）
+举个例子，例如我想要test这个机器名则输入
+echo test>>/etc/hostname
+
+下面是赋予用户权限的过程
+安装sudo：
+pacman -S sudo
+输入nano /etc/sudoers，进入界面后找到
+# %wheel ALL=(ALL)ALL
+这一行并把#去掉，按ctrl+o保存ctrl+x，reboot即可
+
+6、显卡驱动的安装
+pacman -S xf86-video-intel(集成显卡驱动)
+pacman -S nvidia(英伟达显卡驱动)
+具体的显卡驱动安装包详情通过这里来查询
+https://wiki.archlinux.org/index.php/Xorg#Driver_installation
+
+7、安装xorg
+输入pacman -S xorg即可（注，如果是dde桌面环境请直接跳到第八步，因为你的dde依赖包有这个）
+
+注：此时无论是安装dde还是gnome桌面环境的输入systemctl start lightdm即可进入桌面环境。进入桌面环境后所有sudo的操作都会获取superuser的权限让你输入密码，输入登陆密码即可
+
+
+8、字体安装
+arch官方的例子是：
+sudo pacman -S ttf-dejavu
+sudo pacman -S wqy-zenhei
+sudo pacman -S wqy-microhei
+我推荐安装谷歌和adobe合作一款开源字体
+sudo pacman -S adobe-source-han-serif-cn-fonts
+(简体中文宋体)
+sudo pacman -S adobe-source-han-sans-cn-
+fonts(简体中文黑体)
+sudo pacman -S adobe-source-han-serif-tw-fonts
+(繁体中文宋体)
+sudo pacman -S adobe-source-han-sans-tw-
+fonts(繁体中文黑体)
+
+谷歌的nono字体(同样也是开源字体)
+sudo pacman -S noto-sans-fonts
+如果你想要其他字体的详情可以参考这里
+https://wiki.archlinux.org/index.php/Fonts_(简体中文)#.E4.B8.AD.E6.96.87.E5.AD.97
+
+
+10、汉化(此部分是针对于dde桌面环境的)
+进入桌面环境后找到设置的图标，找到keyboard and language并点击，然后找到system language并点击向下拉找到最下面那个点击它，然后会弹出密码输入框输入自己的登陆密码即可。
+
+
+11、aur helper的安装
+sudo pacman -S yaourt(已停更，不太推荐)
+sudo pacman -S aurman(新型，功能强大)
+sudo pacman -S yay(也是新型的，功能也很强大，对于中文的支持不是很好)
+类似的工具也有很多具体参考
+https://wiki.archlinux.org/index.php/AUR_helpers_(简体中文)
+
+最后一点的小尾巴：
+sudo pacman -S alsa-utils puslseaudio pulseaudio-alsa pavucontrol然后输入
+sudo nano /etc/asound.conf在文本中添加下面的几项
+defaults.pcm.card 1
+defaults.pcm.device 0
+defaults.ctl.card 1
+添加好后按ctrl+x然后输入y最后重启即可。
+
+12、扩展库的配置
+输入nano /etc/pacman.conf进入界面后
+按F6输入multilib找到#[multilib]那一行，并把那一行和它下一行的Include的#去掉，然后找到#[custom]去掉里面的custom和前面的#并把custom替换为archlinuxcn并把它下两行的#去掉找到server那一行把=后面的去掉替换为
+https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch按下ctrl+x退出输入y回车（清华源的可以设置这个，如果链接不能查看的话请私聊我）
+然后输入pacman -Syy 和pacman -S archlinuxcn-keyring
