@@ -50,7 +50,7 @@ mount /dev/sdax /mnt/boot（传统方式引导的）
 输入arch-chroot /mnt发现root@archiso~变为[root@archiso /]#即可，这样我们就进入了我们这个做好的半成品系统了
 
 9、设置时区
-输入 ln -sf /usr/share/zoneinfo /Asia/Shanghai /etc/localtime即可
+输入 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime即可
 
 10、硬件时间
 更加简单粗暴，输入hwclock –systohc即可
