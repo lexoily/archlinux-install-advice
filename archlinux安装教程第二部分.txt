@@ -96,7 +96,7 @@ https://wiki.archlinux.org/index.php/Fonts_(简体中文)#.E4.B8.AD.E6.96.87.E5.
 10、汉化(此部分是针对于dde桌面环境的)
 进入桌面环境后找到设置的图标，找到keyboard and language并点击，然后找到system language并点击向下拉找到最下面那个点击它，然后会弹出密码输入框输入自己的登陆密码即可。
 
-11、aur helper的安装
+11、aur helper的安装(完成第12步再进行这一步)
 sudo pacman -S yaourt(已停更，不太推荐)
 sudo pacman -S aurman(新型，功能强大)
 sudo pacman -S yay(也是新型的，功能也很强大，对于中文的支持不是很好)
