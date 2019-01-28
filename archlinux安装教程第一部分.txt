@@ -53,7 +53,7 @@ mount /dev/sdax /mnt/boot（传统方式引导的）
 输入 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime即可
 
 10、硬件时间
-更加简单粗暴，输入hwclock –systohc即可
+更加简单粗暴，输入hwclock –-systohc即可
 
 11、设置区域
 输入nano /etc/locale.gen进入界面后按F6输入en_US.UTF-8回车去掉前面的空格和#号然后重复此步骤并把en_US.UTF-8改为zh_CN.UTF-8去掉前面#后ctrl+O保存ctrl+x退出，输入locale-gen即可
