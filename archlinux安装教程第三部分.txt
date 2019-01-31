@@ -1,3 +1,9 @@
+大家好呀，这里是archlinux安装教程第三部分，咕咕咕了好长时间终于更了，这次是建议向的东西呢，所以内容很空洞
+也属于类似于一种番外的部分
+
+
+
+输入法：
 除了安装fcitx本体及其依赖之外还需要安装以下软件，这里我给出完整命令，为了节省大家时间
 sudo pacman -S im-fcitx fcitx-gtk2 fcitx-gtk3 fcitx-qt4 fcitx-qt5 fcitx-configtool
 
@@ -32,9 +38,7 @@ https://wiki.archlinux.org/index.php/PulseAudio_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%
 这里还有archlinuxwiki的人做的一个更加符合国人的建议，非常具体呢
 https://wiki.archlinux.org/index.php/General_recommendations_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)
 
-archlinux也在进步中，它的安装方式也在不断变化，希望看到这个教程的人能够获得一些参考性意义的东西，当然上面我贴出的网站可能也会随之更改，我也无法及时更正
-也希望大家能够在使用它之后可以拥抱开源并对于linux所体现的魅力有一定理解。也希望大家能够自己动手去搭建自己的系统而不是去使用别人给你写的自动安装脚本来体验，
-因为很没乐趣的。
+archlinux也在进步中，它的安装方式也在不断变化，希望看到这个教程的人能够获得一些参考性意义的东西，当然上面我贴出的网站可能也会随之更改，我也无法及时更正。也希望大家能够在使用它之后可以拥抱开源并对于linux所体现的魅力有一定理解。也希望大家能够自己动手去搭建自己的系统而不是去使用别人给你写的自动安装脚本来体验，因为很没乐趣的。
 
 官方的安装教程：
 https://wiki.archlinux.org/index.php/Installation_guide_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)
