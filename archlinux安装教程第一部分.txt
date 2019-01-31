@@ -37,7 +37,7 @@ mount /dev/sdax /mnt/home
 mkdir /mnt/boot（用传统方式引导的不用下面那一条命令）
 mkdir /mnt/boot/EFI
 mount /dev/sdax /mnt/boot/EFI（用UEFI方式启动的）
-mount /dev/sdax /mnt/boot（传统方式引导的）
+mount /dev/sdax /mnt/boot（传统方式引导的，可略过，非重点步骤）
 
 6、安装并下载必要包
 这里很简单先输入pacstrap /mnt base并等它下载安装好之后输入pacstrap /mnt base-devel并等待安装的完成
