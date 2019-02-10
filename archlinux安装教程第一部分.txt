@@ -5,7 +5,7 @@ Archlinux安装教程第一部分
 
 
 1、环境检测
-首先是网络是否联通我们可以通过ping -c4 192.168.1.1来判断是否联通，如果有4行提示那说明你的网络正常。
+首先是网络是否联通我们可以通过ping -c4 www.baidu.com来判断是否联通，如果有4行提示那说明你的网络正常。
 
 这一步是检测你的引导方式是什么，输入ls /sys/firmware/efi/efivars 如果有一堆文件出现说明你是UEFI，如果没有则说明你是传统的BOIS引导的。不用担心不管你是不是UEFI我们都会写到的。
 
@@ -20,7 +20,7 @@ Archlinux安装教程第一部分
 
 
 3、分区
-先输入fdisk -l来判断硬盘（一般可以忽视这一步）
+先lsblk输入来判断硬盘（一般可以忽视这一步）
 有提示硬盘信息提示就可以，随后我们输入cfdisk，类似的这个分区工具也有很多但是这个对新手很友好的了。我们进入界面后可以根据自己的情况进行分区。由于这个是根据自己情况且描述复杂所以就不过多描述。最后分好区了选择write输入yes回车即可
 
 
@@ -39,26 +39,27 @@ mount /dev/sda1 /mnt
 mkdir /mnt/home
 mount /dev/sdax /mnt/home
 mkdir /mnt/boot（用传统方式引导的不用下面那一条命令）
-mkdir /mnt/boot/EFI
-mount /dev/sdax /mnt/boot/EFI（用UEFI方式启动的）
+mkdir /mnt/boot/efi
+mount /dev/sdax /mnt/boot/efi（用UEFI方式启动的）
 mount /dev/sdax /mnt/boot（传统方式引导的，可略过，非重点步骤）
 
 
 6、安装并下载必要包
-这里很简单先输入pacstrap /mnt base并等它下载安装好之后输入pacstrap /mnt base-devel并等待安装的完成
+这里很简单先输入pacman -Syy更新更新列表缓存然后pacstrap /mnt base base-devel并等待安装的完成
 
 
 7、生成fstab分区表
-输入genfstab -U /mnt >> /mnt/etc/fstab（输入cat /mnt/etc/fstab即可查看是否正确）
+输入genfstab -U /mnt >> /mnt/etc/fstab（输入cat /mnt/etc/fstab即可查看前面的分区部分是否都生成了相应的条目）
 
 
 8、进入基本系统
 注意，不要重启电脑切换，因为我们还是一个半成品
-输入arch-chroot /mnt发现root@archiso~变为[root@archiso /]#即可，这样我们就进入了我们这个做好的半成品系统了
+输入arch-chroot /mnt发现root@archiso~变为[root /]#即可，这样我们就进入了我们这个做好的半成品系统了
 
 
 9、设置时区
 输入 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime即可
+或输入tzselect然后一路确认也是可以的
 
 
 10、硬件时间
@@ -66,7 +67,7 @@ mount /dev/sdax /mnt/boot（传统方式引导的，可略过，非重点步骤�
 
 
 11、设置区域
-输入nano /etc/locale.gen进入界面后按F6输入en_US.UTF-8回车去掉前面的空格和#号然后重复此步骤并把en_US.UTF-8改为zh_CN.UTF-8去掉前面#后ctrl+O保存ctrl+x退出，输入locale-gen即可
+输入nano /etc/locale.gen进入界面后按F6输入en_US.UTF-8回车去掉前面的空格和#号，然后重复此步骤并把en_US.UTF-8改为zh_CN.UTF-8去掉前面#后ctrl+O保存ctrl+x退出，输入locale-gen即可
 
 
 12、设置默认locale
@@ -88,9 +89,10 @@ pacman -S iw wap_supplicant dialog
 16、启动加载器安装和设置
 在linux下普遍使用的是gurb来引导系统的，所以我这里用gurb来做例子
 其他启动加载器可以通过这个链接来选择哦：https://wiki.archlinux.org/index.php/Boot_loaders_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)
-pacman -S grub efibootmgr（注，UEFI引导的需要安装efibootmgr，传统引导的则需要安装grub即可.如果gurb包名不对的话应该是gurb os -prober）
+pacman -S grub efibootmgr（注，UEFI引导的需要安装efibootmgr，传统引导的则需要安装grub即可.如果gurb包名不对的话应该是gurb os -prober，os-prober主要是用来识别双系统的哦）
 注意，这个是很重要的，不要搞混命令哦
-UEFI引导用户输入：grub-install –target=x86_64-efi –efi-directory=/boot/EFI –bootloader- id=grub
+UEFI引导用户输入：grub-install –target=x86_64-efi –efi-directory=/boot/efi –bootloader- id=grub
+"/boot/efi"这一部分可以设置为你设定好的boot挂载点或者说你在最开始建立的EFI目录名称
 传统引导则输入：grub-install /dev/sda
 无论那种引导方式都要输入这个命令grub-mkconfig -o /boot/grub/grub.cfg
 最后分别输入：exit、umount /dev/sda1、umount /dev/sda2、reboot
