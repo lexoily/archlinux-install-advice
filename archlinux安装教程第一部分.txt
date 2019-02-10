@@ -16,7 +16,7 @@ Archlinux安装教程第一部分
 我们现在该选择镜像源了，输入 nano /etc/pacman.d/mirrorlist
 进入nano之后按下F6并输入china回车选择你想要的源，我个人喜欢清华源
 清华源：https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
-用ctrl+k剪切好你选择的服务器地址也就是Server那一行，并用ctrl+u粘贴到第一个上面并添加##China在Server那一行上面（老手们估计感觉很啰嗦）然后ctrl+o保存，ctrl+x退出
+用ctrl+k剪切好你选择的服务器地址也就是Server那一行，并用ctrl+u粘贴到第一个上面并添加##China在Server那一行上面，然后ctrl+o保存，ctrl+x退出
 
 
 3、分区
