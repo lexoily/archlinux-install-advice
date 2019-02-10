@@ -85,15 +85,18 @@ pacman -S iw wap_supplicant dialog
 简单粗暴的命令：pacman -S intel-ucode
 
 
-16、引导
+16、启动加载器安装和设置
+在linux下普遍使用的是gurb来引导系统的，所以我这里用gurb来做例子
+其他启动加载器可以通过这个链接来选择哦：https://wiki.archlinux.org/index.php/Boot_loaders_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)
 pacman -S grub efibootmgr（注，UEFI引导的需要安装efibootmgr，传统引导的则需要安装grub即可.如果gurb包名不对的话应该是gurb os -prober）
-注意，这个阶段是很重要的，不要搞混命令
+注意，这个是很重要的，不要搞混命令哦
 UEFI引导用户输入：grub-install –target=x86_64-efi –efi-directory=/boot/EFI –bootloader- id=grub
 传统引导则输入：grub-install /dev/sda
 无论那种引导方式都要输入这个命令grub-mkconfig -o /boot/grub/grub.cfg
-
-
 最后分别输入：exit、umount /dev/sda1、umount /dev/sda2、reboot
+
+详细的gurb配置在下方链接中哦：
+https://wiki.archlinux.org/index.php/GRUB_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)
 
 
 第一部分结束
