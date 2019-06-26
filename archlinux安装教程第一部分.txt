@@ -75,7 +75,7 @@ mount /dev/sdax /mnt/boot（传统方式引导的，可略过，非重点步骤�
 
 
 13、安装上网的软件
-pacman -S iw wap_supplicant dialog
+pacman -S iw wpa_supplicant dialog
 
 
 14、设置root用户密码
@@ -91,7 +91,7 @@ pacman -S iw wap_supplicant dialog
 其他启动加载器可以通过这个链接来选择哦：https://wiki.archlinux.org/index.php/Boot_loaders_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)
 pacman -S grub efibootmgr（注，UEFI引导的需要安装efibootmgr，传统引导的则需要安装grub即可.如果gurb包名不对的话应该是gurb os -prober，os-prober主要是用来识别双系统的哦）
 注意，这个是很重要的，不要搞混命令哦
-UEFI引导用户输入：grub-install –target=x86_64-efi –efi-directory=/boot/efi –bootloader- id=grub
+UEFI引导用户输入：grub-install -–target=x86_64-efi -–efi-directory=/boot/efi -–bootloader-id=grub
 "/boot/efi"这一部分可以设置为你设定好的boot挂载点或者说你在最开始建立的EFI目录名称
 传统引导则输入：grub-install /dev/sda
 无论那种引导方式都要输入这个命令grub-mkconfig -o /boot/grub/grub.cfg
