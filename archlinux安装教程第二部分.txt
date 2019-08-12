@@ -72,7 +72,7 @@ echo test>>/etc/hostname
 pacman -S sudo
 输入nano /etc/sudoers，进入界面后找到
 # %wheel ALL=(ALL)ALL
-这一行并把#去掉，找到#%sudo ALL=(ALL) ALL把%sudu替换为你的用户名，最后同样去掉#保存退出
+这一行并把#去掉，找到#%sudo ALL=(ALL) ALL把%sudo替换为你的用户名，最后同样去掉#保存退出
 接下来还需要编辑/etc/hosts，并填入：
 127.0.0.1      localhost
 然后reboot重启就好
