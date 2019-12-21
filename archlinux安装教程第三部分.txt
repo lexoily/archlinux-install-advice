@@ -1,17 +1,17 @@
-大家好呀，这里是archlinux安装教程第三部分，咕咕咕了好长时间终于更了，这次是建议向的东西呢，所以内容很空洞
-也属于类似于一种番外的部分
+这里是archlinux安装教程第三部分，主要偏向个性化定制，但是不包括美化方面的
+
 
 
 
 输入法：
 (注：主要针对于fcitx输入法引擎)
-除了安装fcitx本体及其依赖之外还需要安装以下软件，这里我给出完整命令，为了节省大家时间
-sudo pacman -S fcitx-gtk2 fcitx-gtk3 fcitx-qt4 fcitx-qt5 fcitx-configtool
+除了安装fcitx本体及其依赖之外还需要安装以下软件：
+sudo pacman -S fcitx-gtk3 fcitx-qt4 fcitx-qt5 fcitx-configtool
+(注意：fcitx-gtk2 已被移除主源，可在aur中找到)
 
-通过上面的命令安装好了还不够的，需要在/home/username(你的用户名)下建立一个文件
+之后需要在/home/username(你的用户名)下建立一个文件
 文件名：.xprofile
-(没错那个点就是我故意加上的而并不是我在写教程时不小心打上去的)
-写入以下内容：
+在文件内写入以下内容：
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS="@im=fcitx"
@@ -27,21 +27,19 @@ https://wiki.archlinux.org/index.php/Fcitx_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87
 echo LANG=zh_CN.UTF-8>>/etc/locale.conf
 
 
-pulseaudio托盘图标(或者是面板图标，emmm，我也不太清楚如何称呼了)
-我是xfce桌面用户，所以我是这样解决的
+pulseaudio托盘图标
+这里以xfce桌面为例：
 sudo pacman -S xfce-pulseaudio-plugin
-然后右键一个面板，在菜单中找到面板，然后会弹出一个二级菜单，在里面找到面板首选项，会弹出一个窗口，找到项目这个题目框，找到+按钮，选择添加pulseaudio插件
 具体实例：
 https://wiki.archlinux.org/index.php/PulseAudio_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)
 
 
 
-这里还有archlinuxwiki的人做的一个更加符合国人的建议，非常具体呢
+更加符合国人的建议向wiki
 https://wiki.archlinux.org/index.php/General_recommendations_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)
 
-archlinux也在进步中，它的安装方式也在不断变化，希望看到这个教程的人能够获得一些参考性意义的东西，当然上面我贴出的网站可能也会随之更改，我也无法及时更正。也希望大家能够在使用它之后可以拥抱开源并对于linux所体现的魅力有一定理解。也希望大家能够自己动手去搭建自己的系统而不是去使用别人给你写的自动安装脚本来体验，因为很没乐趣的。
 
 官方的安装教程：
 https://wiki.archlinux.org/index.php/Installation_guide_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)
 
-学业繁忙，后会有期。
+第三部分到此结束
