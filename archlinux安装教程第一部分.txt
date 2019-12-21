@@ -1,6 +1,6 @@
 Archlinux安装教程第一部分
 
-这可能是一个很仔细的archlinux安装教程，与此同时我也因为自己给自己的电脑安装arch所以顺便就出了这一个教程。第一部分为archlinux的基本的安装操作，其目的是安装一个很基础的(不带图形界面的哦)archlinux系统
+这可能是一个很仔细的archlinux安装教程，与此同时我也因为自己给自己的电脑安装arch所以顺便就出了这一个教程。第一部分为archlinux的基本的安装操作，其目的是安装一个很基础的(不带图形界面的)archlinux系统
 
 
 
@@ -45,7 +45,8 @@ mount /dev/sdax /mnt/boot（传统方式引导的，可略过，非重点步骤�
 
 
 6、安装并下载必要包
-这里很简单先输入pacman -Syy更新更新列表缓存然后pacstrap /mnt base base-devel并等待安装的完成
+这里很简单先输入pacman -Syy更新更新列表缓存然后pacstrap /mnt base linux linux-firmware base-devel dhcpcd cfdisk nano man-db man-pages texinfo
+(base 软件包并没有包含全部 live 环境中的程序,需要额外安装一些软件，因此我在这里做了一些基本的补充，相关的提示和建议在第三部结尾的网址里，望周知)
 
 
 7、生成fstab分区表
@@ -97,7 +98,7 @@ UEFI引导用户输入：grub-install -–target=x86_64-efi -–efi-directory=/b
 无论那种引导方式都要输入这个命令grub-mkconfig -o /boot/grub/grub.cfg
 最后分别输入：exit、umount /dev/sda1、umount /dev/sda2、reboot
 
-详细的gurb配置在下方链接中哦：
+更加详细的gurb配置在下方链接中：
 https://wiki.archlinux.org/index.php/GRUB_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)
 
 
