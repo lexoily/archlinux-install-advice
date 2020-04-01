@@ -96,7 +96,7 @@ UEFI引导用户输入：grub-install -–target=x86_64-efi -–efi-directory=/b
 "/boot/efi"这一部分可以设置为你设定好的boot挂载点或者说你在最开始建立的EFI目录名称
 传统引导则输入：grub-install /dev/sda
 无论那种引导方式都要输入这个命令grub-mkconfig -o /boot/grub/grub.cfg
-最后分别输入：exit、umount /dev/sda1、umount /dev/sda2、reboot
+最后分别输入exit退出chroot环境 reboot重启
 
 更加详细的gurb配置在下方链接中：
 https://wiki.archlinux.org/index.php/GRUB_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)
