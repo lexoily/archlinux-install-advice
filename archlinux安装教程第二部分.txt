@@ -24,8 +24,8 @@ systemctl start dhcpcd（wifi-menu）
 2、安装图形界面
 这里给出几个常用桌面环境的安装方法，可根据喜好挑选一个或多个桌面环境安装使用
 命令：pacman -S gnome(最基础的gnome环境)
-            pacman -S deepin(用这里的汉化就可以省略第三部分的汉化方法了)
-            pacman -S plasma-desktop(最基础的kde环境)
+     pacman -S deepin(用这里的汉化就可以省略第三部分的汉化方法了)
+     pacman -S plasma-desktop(最基础的kde环境)
 有关桌面环境的建议和安装方法可以参考这个链接：
 https://wiki.archlinux.org/index.php/Desktop_environment#List_of_desktop_environments
 
@@ -33,15 +33,15 @@ https://wiki.archlinux.org/index.php/Desktop_environment#List_of_desktop_environ
 3、networkmanager的安装和配置
 安装命令：pacman -S networkmanager
 启用networkmanager
-命令(要注意区分大小写)：systemctl start NetworkManager
-                                               systemctl enable NetworkManager
+命令(要注意区分大小写):systemctl start NetworkManager
+                    systemctl enable NetworkManager
 为了避免有些桌面环境没有带网络图标我们可以通过下面的命令来安装网络提示图标：
 pacman -S network-manager-applet
 
 
 4、登录界面的安装和配置
-sddm（kde桌面环境默认登陆界面）:systemctl enable gdm
-gdm（gnome桌面环境默认登陆界面）: systemctl enble sddm
+sddm（kde桌面环境默认登陆界面）:systemctl enable sddm
+gdm（gnome桌面环境默认登陆界面）: systemctl enble gdm
 (注意：安装kde或者gnome桌面环境的用以上相对应的命令来让登陆界面随着系统启动)
 其它桌面环境大多没有默认的登陆界面所以我们可以用lightdm来作为我们的登陆界面
 具体建议和使用方法在这里：https://wiki.archlinux.org/index.php/LightDM_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)
@@ -89,16 +89,15 @@ sudo pacman -S wqy-microhei
 我推荐安装谷歌和adobe合作一款开源字体
 sudo pacman -S adobe-source-han-serif-cn-fonts
 (简体中文宋体)
-sudo pacman -S adobe-source-han-sans-cn-
-fonts(简体中文黑体)
+sudo pacman -S adobe-source-han-sans-cn-fonts
+(简体中文黑体)
 sudo pacman -S adobe-source-han-serif-tw-fonts
 (繁体中文宋体)
-sudo pacman -S adobe-source-han-sans-tw-
-fonts(繁体中文黑体)
+sudo pacman -S adobe-source-han-sans-tw-fonts
+(繁体中文黑体)
 
-谷歌的nono字体(同样也是开源字体)
-sudo pacman -S noto-sans-fonts
-如果你想要其他字体的详情可以参考这里：
+
+其他字体的详情参考这里：
 https://wiki.archlinux.org/index.php/Fonts_(简体中文)#.E4.B8.AD.E6.96.87.E5.AD.97
 
 
@@ -108,13 +107,13 @@ https://wiki.archlinux.org/index.php/Fonts_(简体中文)#.E4.B8.AD.E6.96.87.E5.
 https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
 之后找到SigLevel = TrustedOnly这一行删去它，保存退出
 此时可以安装archlinuxcn密钥环：sudo pacman -Syy archlinuxcn-keyring
-                                                             sudo pacman -Syu haveged
-                                                             sudo systemctl start haveged
-                                                             sudo systemctl enable haveged
-                                                             sudo rm -fr /etc/pacman.d/gnupg
-                                                             sudo pacman-key --init
-                                                             sudo pacman-key --populate archlinux
-                                                             sudo pacman-key --populate archlinuxcn
+                            sudo pacman -Syu haveged
+                            sudo systemctl start haveged
+                            sudo systemctl enable haveged
+                            sudo rm -fr /etc/pacman.d/gnupg
+                            sudo pacman-key --init
+                            sudo pacman-key --populate archlinux
+                            sudo pacman-key --populate archlinuxcn
 
 11、aur helper的安装
 sudo pacman -S yaourt(已停更，不太推荐)
