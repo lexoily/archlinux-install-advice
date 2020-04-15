@@ -35,11 +35,11 @@ https://wiki.archlinux.org/index.php/PulseAudio_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%
 
 
 
-更加符合国人的建议向wiki
+后续优化的建议：
 https://wiki.archlinux.org/index.php/General_recommendations_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)
 
 
 官方的安装教程：
 https://wiki.archlinux.org/index.php/Installation_guide_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)
 
-第三部分到此结束
+第三部分结束
