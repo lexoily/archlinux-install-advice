@@ -7,7 +7,7 @@ Archlinux安装教程第一部分
 1、环境检测
 首先是网络是否联通我们可以通过ping -c4 www.baidu.com来判断是否联通，如果有4行提示那说明你的网络正常。
 
-这一步是检测你的引导方式是什么，输入ls /sys/firmware/efi/efivars 如果有一堆文件出现说明你是UEFI，如果没有则说明你是传统的BOIS引导的。不用担心不管你是不是UEFI我们都会写到的。
+这一步是检测你的引导方式是什么，输入ls /sys/firmware/efi/efivars 如果有一堆文件出现说明你是UEFI，如果没有则说明你是传统的BOIS引导的。
 
 
 2、同步时间和选择镜像源
@@ -16,7 +16,7 @@ Archlinux安装教程第一部分
 我们现在该选择镜像源了，输入 nano /etc/pacman.d/mirrorlist
 进入nano之后按下F6并输入china回车选择你想要的源，我个人喜欢清华源
 清华源：https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
-用ctrl+k剪切好你选择的服务器地址也就是Server那一行，并用ctrl+u粘贴到第一个上面并添加##China在Server那一行上面，然后ctrl+o保存，ctrl+x退出
+最后保存并退出
 
 
 3、分区
@@ -83,20 +83,21 @@ pacman -S iw wpa_supplicant dialog
 输入passwd然后输入你的密码（注，密码在这里是不出现的，请确保你的密码输入正确）
 
 
-15、安装intel微码（AMD的cpu用户可以跳过，因为你们的这个是开源的已经集成在了linux内核里面）
+15、安装intel微码（AMD的cpu用户可以跳过，因为AMD的微码已经集成在了linux内核里面）
 简单粗暴的命令：pacman -S intel-ucode
 
 
 16、启动加载器安装和设置
 在linux下普遍使用的是gurb来引导系统的，所以我这里用gurb来做例子
-其他启动加载器可以通过这个链接来选择哦：https://wiki.archlinux.org/index.php/Boot_loaders_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)
-pacman -S grub efibootmgr（注，UEFI引导的需要安装efibootmgr，传统引导的则需要安装grub即可.如果gurb包名不对的话应该是gurb os -prober，os-prober主要是用来识别双系统的哦）
-注意，这个是很重要的，不要搞混命令哦
+如果喜欢使用其他引导可以通过这个链接参考一下：https://wiki.archlinux.org/index.php/Boot_loaders_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)
+
+pacman -S grub efibootmgr（注，UEFI引导的需要安装efibootmgr，传统引导的则需要安装grub即可.如果gurb包名不对的话应该是gurb os -prober，os-prober主要是用来识别双系统的）
+注意：不要搞混命令，否则会无法正常进入系统
 UEFI引导用户输入：grub-install -–target=x86_64-efi -–efi-directory=/boot/efi -–bootloader-id=grub
 "/boot/efi"这一部分可以设置为你设定好的boot挂载点或者说你在最开始建立的EFI目录名称
 传统引导则输入：grub-install /dev/sda
-无论那种引导方式都要输入这个命令grub-mkconfig -o /boot/grub/grub.cfg
-最后分别输入exit退出chroot环境 reboot重启
+最后输入命令grub-mkconfig -o /boot/grub/grub.cfg
+最后的最后分别输入exit退出chroot环境 reboot重启
 
 更加详细的gurb配置在下方链接中：
 https://wiki.archlinux.org/index.php/GRUB_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)
