@@ -25,7 +25,7 @@ systemctl start dhcpcd（wifi-menu）
 这里给出几个常用桌面环境的安装方法，可根据喜好挑选一个或多个桌面环境安装使用
 命令：pacman -S gnome(最基础的gnome环境)
      pacman -S deepin(用这里的汉化就可以省略第三部分的汉化方法了)
-     pacman -S plasma-desktop(最基础的kde环境)
+     pacman -S plasma kdebase(最基础的kde环境)
 有关桌面环境的建议和安装方法可以参考这个链接：
 https://wiki.archlinux.org/index.php/Desktop_environment#List_of_desktop_environments
 
