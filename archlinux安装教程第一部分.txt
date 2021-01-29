@@ -83,19 +83,20 @@ pacman -S iw wpa_supplicant dialog
 输入passwd然后输入你的密码（注，密码在这里是不出现的，请确保你的密码输入正确）
 
 
-15、安装intel微码（AMD的cpu用户可以跳过，因为AMD的微码已经集成在了linux内核里面）
-简单粗暴的命令：pacman -S intel-ucode
+15、安装CPU微码
+pacman -S intel-ucode(英特尔平台)
+pacman -S amd-ucode(AMD平台)
 
 
 16、启动加载器安装和设置
 在linux下普遍使用的是gurb来引导系统的，所以我这里用gurb来做例子
 如果喜欢使用其他引导可以通过这个链接参考一下：https://wiki.archlinux.org/index.php/Boot_loaders_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)
 
-pacman -S grub efibootmgr（注，UEFI引导的需要安装efibootmgr，传统引导的则需要安装grub即可.如果gurb包名不对的话应该是gurb os -prober，os-prober主要是用来识别双系统的）
+pacman -S grub efibootmgr（注，UEFI引导的需要安装efibootmgr，传统引导的则需要安装grub即可.)
 注意：不要搞混命令，否则会无法正常进入系统
 UEFI引导用户输入：grub-install -–target=x86_64-efi -–efi-directory=/boot/efi -–bootloader-id=grub
-"/boot/efi"这一部分可以设置为你设定好的boot挂载点或者说你在最开始建立的EFI目录名称
 传统引导则输入：grub-install /dev/sda
+多系统用户安装os-prober
 最后输入命令grub-mkconfig -o /boot/grub/grub.cfg
 最后的最后分别输入exit退出chroot环境 reboot重启
 
